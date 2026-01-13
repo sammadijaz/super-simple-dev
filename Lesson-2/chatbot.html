@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBot</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      html,
+      body {
+        background-color: #141414;
+        color: #f5f5f5;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 20px;
+      }
+
+      div {
+        padding: 20px 30px;
+        border: 2px #fff solid;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const div = (
+        <div>
+          <h1>Hello</h1>
+        </div>
+      );
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(div);
+    </script>
+  </body>
+</html>
