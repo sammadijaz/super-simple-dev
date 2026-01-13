@@ -15,16 +15,6 @@
         background-color: #141414;
         color: #f5f5f5;
       }
-
-      button {
-        padding: 10px 20px;
-        font-size: 20px;
-      }
-
-      div {
-        padding: 20px 30px;
-        border: 2px #fff solid;
-      }
     </style>
   </head>
   <body>
@@ -38,11 +28,18 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput () {
-        return <>
+        return (
+        <>
             <input />
             <button>Send</button>
         </>
-      }
+      ); 
+    }
+
+      const div = 
+        <div> 
+            <ChatInput />
+        </div>
 
       const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(div);
