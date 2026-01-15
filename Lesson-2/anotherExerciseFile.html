@@ -27,7 +27,12 @@
         return (
           <>
             <p>{name}</p>
-            <p>{price}</p>
+            {(discount && (
+              <del>
+                <p>{price}</p>
+              </del>
+            )) ||
+              (!discount && <p>{price}</p>)}
             {discount && <p>{discount}</p>}
             <button>Add to Cart</button>
           </>
@@ -37,19 +42,13 @@
       function App() {
         return (
           <>
-            <ProductDetails 
-                name="Cotton Socks" 
-                price="$10.90" 
-                discount="$5.45"
+            <ProductDetails
+              name="Cotton Socks"
+              price="$10.90"
+              discount="$5.45"
             />
-            <ProductDetails 
-                name="Tennis Balls" 
-                price="$6.00" 
-            />
-            <ProductDetails 
-                name="Plain T-Shirt" 
-                price="$7.99" 
-            />
+            <ProductDetails name="Tennis Balls" price="$6.00" />
+            <ProductDetails name="Plain T-Shirt" price="$7.99" discount="$5" />
           </>
         );
       }
