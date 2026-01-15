@@ -23,10 +23,9 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function App() {
+      function LoginForm() {
         return (
           <>
-            <p>Hello, Welcome to my Website!</p>
             <div>
               <input placeholder="Email" />
             </div>
@@ -35,6 +34,15 @@
             </div>
             <button>Sign up</button>
             <button>Sign in</button>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <p>Hello, Welcome to my Website!</p>
+            <LoginForm />
           </>
         );
       }
