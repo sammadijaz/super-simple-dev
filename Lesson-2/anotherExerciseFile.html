@@ -23,11 +23,12 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function ProductDetails({ name, price }) {
+      function ProductDetails({ name, price, discount }) {
         return (
           <>
             <p>{name}</p>
             <p>{price}</p>
+            {discount && <p>{discount}</p>}
             <button>Add to Cart</button>
           </>
         );
@@ -36,9 +37,19 @@
       function App() {
         return (
           <>
-            <ProductDetails name="Cotton Socks" price="$10.90" />
-            <ProductDetails name="Tennis Balls" price="$6.00" />
-            <ProductDetails name="Plain T-Shirt" price="$7.99" />
+            <ProductDetails 
+                name="Cotton Socks" 
+                price="$10.90" 
+                discount="$5.45"
+            />
+            <ProductDetails 
+                name="Tennis Balls" 
+                price="$6.00" 
+            />
+            <ProductDetails 
+                name="Plain T-Shirt" 
+                price="$7.99" 
+            />
           </>
         );
       }
