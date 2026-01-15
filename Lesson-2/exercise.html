@@ -23,19 +23,23 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-        function App () {
-            return (
-               <>
-                 <p>Hello, Welcome to my Website!</p>
-                 <button>Sign up</button>
-                 <button>Sign in</button>
-               </>
-            ); 
-        }
+      function App() {
+        return (
+          <>
+            <p>Hello, Welcome to my Website!</p>
+            <div>
+              <input placeholder="Email" />
+            </div>
+            <div>
+              <input placeholder="Password" />
+            </div>
+            <button>Sign up</button>
+            <button>Sign in</button>
+          </>
+        );
+      }
 
-
-
-      const container = document.querySelector('.js-container');
+      const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
