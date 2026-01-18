@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Lesson 2 - Exercises (2)</title>
@@ -26,7 +26,10 @@
       function ProductDetails({ name, price, discount, imgSrc }) {
         return (
           <div>
-            <img src={`https://supersimple.dev/images/${imgSrc}.png`} width="100" />
+            <img
+              src={`https://supersimple.dev/images/${imgSrc}.png`}
+              width="100"
+            />
             <p>{name}</p>
             {discount ? (
               <del>
@@ -50,10 +53,10 @@
               discount="$5.45"
               imgSrc="cotton-socks"
             />
-            <ProductDetails 
-              name="Tennis Balls" 
-              price="$6.00" 
-              imgSrc="tennis-balls" 
+            <ProductDetails
+              name="Tennis Balls"
+              price="$6.00"
+              imgSrc="tennis-balls"
             />
             <ProductDetails
               name="Plain T-Shirt"
