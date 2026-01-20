@@ -57,14 +57,17 @@
 
           const res = Chatbot.getResponse(inputText);
 
-          setChatMessages([
-            ...newChatMessages,
-            {
-              message: res,
-              sender: "robot",
-              id: crypto.randomUUID()
-            }
-          ]);
+          setTimeout(() => {
+              
+            setChatMessages([
+              ...newChatMessages,
+              {
+                message: res,
+                sender: "robot",
+                id: crypto.randomUUID()
+              }
+            ]);
+          }, 500)
 
           setInputText("");
         };
