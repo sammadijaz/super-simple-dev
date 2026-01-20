@@ -27,12 +27,10 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function Counter() {
+      function Counter({ count, setCount }) {
         function printClick() {
           console.log("Clicked!");
         }
-
-        let [count, setCount] = React.useState(0);
 
         function updateCount() {
           setCount((curr) => curr + 1);
@@ -46,10 +44,12 @@
       }
 
       function App() {
+
+        let [count, setCount] = React.useState(0);
         return (
           <div>
-            <Counter />
-            <Counter />
+            <Counter count={count} setCount={setCount}/>
+            <Counter count={count} setCount={setCount}/>
           </div>
         );
       }
