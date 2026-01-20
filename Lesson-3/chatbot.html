@@ -26,9 +26,24 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function ChatInput() {
+
+        const [inputText, setInputText] = React.useState("")
+
+        function saveInputText (event) {
+            // when onChange would run this function, it would give us a parameter named "event" object and it would tell us the details of the change happened
+
+            // event.target gives the element that changed
+
+            setInputText(event.target.value)
+          }
+
         return (
           <>
-            <input placeholder="Send a message to Mr ChatBot" size="35" />
+            <input 
+              placeholder="Send a message to Mr ChatBot" 
+              size="35" 
+              onChange={saveInputText}
+            />
             <button>Send</button>
           </>
         );
