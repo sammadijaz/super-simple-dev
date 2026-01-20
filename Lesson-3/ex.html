@@ -27,40 +27,58 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function Counter({ count, setCount }) {
-        function printClick() {
-          console.log("Clicked!");
-        }
-
-        function updateCount() {
+        function Counter({ count, setCount }) {
+            function printClick() {
+                console.log("Clicked!");
+            }
+            
+            function updateCount() {
           setCount((curr) => curr + 1);
         }
-
+        
         return (
-          <button onClick={updateCount}>
+            <button onClick={updateCount}>
             {count === 1 ? `Clicked ${count} time` : `Clicked ${count} times`}
           </button>
         );
-      }
-
-      function Reset({ setCount }) {
+    }
+    
+    function Reset({ setCount }) {
         function reset() {
-          setCount((curr) => (curr = 0));
+            setCount((curr) => (curr = 0));
         }
-
+        
         return <button onClick={reset}>Reset</button>;
-      }
-
-      function TextInput() {
+    }
+    
+    function TextInput() {
         let [text, setText] = React.useState('')
+        let [count, setCount] = React.useState(0);
+        const names = ["Sam", "Nina", "Alex"]
         
         function saveText(event){
             setText(event.target.value)
         }
 
+        function removeText() {
+            setText((curr) => curr = "")
+        }
+
+        function exampleText () {
+            
+            setCount((curr) => {
+                    return curr >= 2 ? curr = 0 : curr + 1;
+                });
+
+
+            setText(names[count])
+        }
+
         return (
           <div>
-            <input type="text" onChange={saveText} />
+            <input type="text" onChange={saveText} value={text} />
+            <button onClick={removeText}>Reset</button>
+            <button onClick={exampleText}>Example</button>
             <h2>Hello {text}</h2>
           </div>
         );
