@@ -87,7 +87,23 @@
         );
       }
 
-      function ChatMessages() {
+      function ChatMessages() { 
+        return (
+          <>
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
+      function App() {
 
         const [chatMessages, setChatMessages] = React.useState([
           {
@@ -115,24 +131,8 @@
         // const [chatMessages, setChatMessages] = array; // array destructuring just like objects
 
         // const chatMessages = array[0] // first value is the current data
-        // const setChatMessages = array[1] // second value is a function to update the current value    
+        // const setChatMessages = array[1] // second value is a function to update the current value   
 
-        return (
-          <>
-            {chatMessages.map((chatMessage) => {
-              return (
-                <ChatMessage
-                  message={chatMessage.message}
-                  sender={chatMessage.sender}
-                  key={chatMessage.id}
-                />
-              );
-            })}
-          </>
-        );
-      }
-
-      function App() {
         return (
           <>
             <ChatInput />
