@@ -75,6 +75,7 @@
         function sendOnEnter(event) {
           
           event.key === "Enter" && sendMessage()
+          event.key === "Escape" && setInputText("")
         }
 
         return (
