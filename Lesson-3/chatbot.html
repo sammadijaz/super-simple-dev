@@ -82,8 +82,10 @@
           },
         ]);
 
-        const chatMessages = array[0] // first value is the current data
-        const setChatMessages = array[1] // second value is a function to update the current value
+        const [chatMessages, setChatMessages] = array; // array destructuring just like objects
+
+        // const chatMessages = array[0] // first value is the current data
+        // const setChatMessages = array[1] // second value is a function to update the current value
 
         function sendMessage() {
           setChatMessages([
