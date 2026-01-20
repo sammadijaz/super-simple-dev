@@ -32,9 +32,15 @@
           console.log("Clicked!");
         }
 
+        let [count, setCount] = React.useState(0);
+
+        function updateCount() {
+          setCount((curr) => curr + 1);
+        }
+
         return (
           <div>
-            <button onClick={printClick}>Clicked 0 times</button>
+            <button onClick={updateCount}>Clicked {count} times</button>
           </div>
         );
       }
