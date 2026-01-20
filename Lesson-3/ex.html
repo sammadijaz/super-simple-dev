@@ -37,32 +37,43 @@
         }
 
         return (
-            <button onClick={updateCount}>
-                {count === 1 ? `Clicked ${count} time` : `Clicked ${count} times`}
-            </button>
-        )
+          <button onClick={updateCount}>
+            {count === 1 ? `Clicked ${count} time` : `Clicked ${count} times`}
+          </button>
+        );
       }
 
-      function Reset ({ setCount }) {
-
+      function Reset({ setCount }) {
         function reset() {
-            setCount((curr) => curr = 0)
+          setCount((curr) => (curr = 0));
         }
 
-        return(
-            <button onClick={reset}>Reset</button>
-        )
-      };
+        return <button onClick={reset}>Reset</button>;
+      }
+
+      function TextInput() {
+        let [text, setText] = React.useState('')
+        
+        function saveText(event){
+            setText(event.target.value)
+        }
+
+        return (
+          <div>
+            <input type="text" onChange={saveText} />
+            <h2>Hello {text}</h2>
+          </div>
+        );
+      }
 
       function App() {
-
         let [count, setCount] = React.useState(0);
         return (
           <div>
-            <Counter count={count} setCount={setCount}/>
-            <Counter count={count} setCount={setCount}/>
-            <Reset setCount={setCount}/>
-            
+            <Counter count={count} setCount={setCount} />
+            <Counter count={count} setCount={setCount} />
+            <Reset setCount={setCount} />
+            <TextInput />   
           </div>
         );
       }
