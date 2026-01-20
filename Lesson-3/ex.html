@@ -28,7 +28,15 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       function App() {
-        return <div></div>;
+        function printClick() {
+          console.log("Clicked!");
+        }
+
+        return (
+          <div>
+            <button onClick={printClick}>Clicked 0 times</button>
+          </div>
+        );
       }
 
       const container = document.querySelector(".js-container");
