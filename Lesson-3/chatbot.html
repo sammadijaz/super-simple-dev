@@ -22,8 +22,8 @@
 
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-    
-    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/chatbot.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
@@ -47,7 +47,18 @@
               sender: "user",
               id: crypto.randomUUID()
             }
-          ])
+          ]);
+
+          const res = Chatbot.getResponse(inputText);
+          
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: res,
+              sender: "robot",
+              id: crypto.randomUUID()
+            }
+          ]);
 
           setInputText("");
         };
