@@ -27,7 +27,7 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function App() {
+      function Counter() {
         function printClick() {
           console.log("Clicked!");
         }
@@ -39,8 +39,16 @@
         }
 
         return (
+            <button onClick={updateCount}>
+                {count === 1 ? `Clicked ${count} time` : `Clicked ${count} times`}
+            </button>
+        )
+      }
+
+      function App() {
+        return (
           <div>
-            <button onClick={updateCount}>Clicked {count} times</button>
+            <Counter />
           </div>
         );
       }
