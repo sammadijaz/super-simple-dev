@@ -30,12 +30,25 @@
         const [inputText, setInputText] = React.useState("")
 
         function saveInputText (event) {
-            // when onChange would run this function, it would give us a parameter named "event" object and it would tell us the details of the change happened
+          // when onChange would run this function, it would give us a parameter named "event" object and it would tell us the details of the change happened
 
-            // event.target gives the element that changed
+          // event.target gives the element that changed
 
-            setInputText(event.target.value)
-          }
+          setInputText(event.target.value)
+        };
+
+        function sendMessage() {
+          console.log(inputText)
+
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: "test message",
+              sender: "user",
+              id: crypto.randomUUID()
+            }
+          ])
+        };
 
         return (
           <>
@@ -44,7 +57,9 @@
               size="35" 
               onChange={saveInputText}
             />
-            <button>Send</button>
+            <button
+              onClick={sendMessage}
+            >Send</button>
           </>
         );
       }
@@ -100,23 +115,10 @@
         // const [chatMessages, setChatMessages] = array; // array destructuring just like objects
 
         // const chatMessages = array[0] // first value is the current data
-        // const setChatMessages = array[1] // second value is a function to update the current value
-
-        function sendMessage() {
-          setChatMessages([
-            ...chatMessages,
-            {
-              message: "test message",
-              sender: "user",
-              id: crypto.randomUUID()
-            }
-          ])
-        }
+        // const setChatMessages = array[1] // second value is a function to update the current value    
 
         return (
           <>
-            <button onClick={sendMessage}>Send message</button>
-
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
