@@ -39,7 +39,7 @@
           setInputText(event.target.value)
         };
 
-        function sendMessage() {
+        async function sendMessage() {
           // our sent message did not appear in the chat area because react does not update the state until all the code in this function is executed, so it waits for us to call setChatMessages and finish this function first before updating the state. Hence our message was not appearing in the chat area because the state was not updated yet.
 
           // to fix this workaround, we can create a new variable to hold the updated chat messages and then call setChatMessages with that variable. This way, we ensure that the state is updated correctly before we proceed to get the chatbot's response.
@@ -55,7 +55,7 @@
           
           setChatMessages(newChatMessages);
 
-          const res = Chatbot.getResponse(inputText);
+          const res = await Chatbot.getResponseAsync(inputText);
 
           setTimeout(() => {
               
