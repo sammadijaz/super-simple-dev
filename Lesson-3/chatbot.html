@@ -56,18 +56,15 @@
           setChatMessages(newChatMessages);
 
           const res = await Chatbot.getResponseAsync(inputText);
-
-          setTimeout(() => {
-              
-            setChatMessages([
-              ...newChatMessages,
-              {
-                message: res,
-                sender: "robot",
-                id: crypto.randomUUID()
-              }
-            ]);
-          }, 500)
+        
+          setChatMessages([
+            ...newChatMessages,
+            {
+              message: res,
+              sender: "robot",
+              id: crypto.randomUUID()
+            }
+          ]);
 
           setInputText("");
         };
