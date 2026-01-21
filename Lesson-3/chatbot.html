@@ -30,6 +30,7 @@
       function ChatInput({ chatMessages, setChatMessages }) {
 
         const [inputText, setInputText] = React.useState("")
+        const [isLoading, setIsLoading] = React.useState(false);
 
         function saveInputText (event) {
           // when onChange would run this function, it would give us a parameter named "event" object and it would tell us the details of the change happened
@@ -40,6 +41,14 @@
         };
 
         async function sendMessage() {
+
+          if (isLoading || inputText === ""){
+            alert("Please enter a message before sending");
+            return;
+          }
+
+          setIsLoading(true);
+
           // our sent message did not appear in the chat area because react does not update the state until all the code in this function is executed, so it waits for us to call setChatMessages and finish this function first before updating the state. Hence our message was not appearing in the chat area because the state was not updated yet.
 
           // to fix this workaround, we can create a new variable to hold the updated chat messages and then call setChatMessages with that variable. This way, we ensure that the state is updated correctly before we proceed to get the chatbot's response.
@@ -72,7 +81,11 @@
               id: crypto.randomUUID()
             }
           ]);
+
+          
+          setIsLoading(false)
         };
+        
 
         function sendOnEnter(event) {
           
@@ -88,6 +101,7 @@
               onChange={saveInputText}
               value={inputText}
               onKeyDown={sendOnEnter}
+              disabled={isLoading}
             />
             <button
               onClick={sendMessage}
