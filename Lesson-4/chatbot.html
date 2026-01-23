@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson - 4 | CSS with React, Hooks, Finish Chatbot Project </title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+      }
+
+      html,
+      body {
+        background-color: #141414;
+        color: #f5f5f5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev@8.6.4/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ChatInput({ chatMessages, setChatMessages }) {
+
+        const [inputText, setInputText] = React.useState("")
+        const [isLoading, setIsLoading] = React.useState(false);
+
+        function saveInputText (event) {
+          // when onChange would run this function, it would give us a parameter named "event" object and it would tell us the details of the change happened
+
+          // event.target gives the element that changed
+
+          setInputText(event.target.value)
+        };
+
+        async function sendMessage() {
+
+          if (isLoading || inputText === ""){
+            alert("Please enter a message before sending");
+            return;
+          }
+
+          setIsLoading(true);
+
+          // our sent message did not appear in the chat area because react does not update the state until all the code in this function is executed, so it waits for us to call setChatMessages and finish this function first before updating the state. Hence our message was not appearing in the chat area because the state was not updated yet.
+
+          // to fix this workaround, we can create a new variable to hold the updated chat messages and then call setChatMessages with that variable. This way, we ensure that the state is updated correctly before we proceed to get the chatbot's response.
+
+          const newChatMessages = [
+            ...chatMessages,
+            {
+              message: inputText,
+              sender: "user",
+              id: crypto.randomUUID()
+            },
+            {
+              message: "Loading...",
+              sender: "robot",
+              id: crypto.randomUUID()
+            },
+          ];
+          
+          setChatMessages(newChatMessages);
+
+          setInputText("");
+
+          const res = await Chatbot.getResponseAsync(inputText);
+        
+          setChatMessages([
+            ...newChatMessages.slice(0, newChatMessages.length - 1),
+            {
+              message: res,
+              sender: "robot",
+              id: crypto.randomUUID()
+            }
+          ]);
+
+          
+          setIsLoading(false)
+        };
+        
+
+        function sendOnEnter(event) {
+          
+          event.key === "Enter" && sendMessage()
+          event.key === "Escape" && setInputText("")
+        }
+
+        return (
+          <>
+            <input 
+              placeholder="Send a message to Mr ChatBot" 
+              size="35" 
+              onChange={saveInputText}
+              value={inputText}
+              onKeyDown={sendOnEnter}
+              disabled={isLoading}
+            />
+            <button
+              onClick={sendMessage}
+            >Send</button>
+          </>
+        );
+      };
+
+      function ChatMessage({ message, sender }) {
+        // const message = props.message;
+        // const sender = props.sender;
+        // const {message, sender} = props;
+
+        // if (sender === "robot") {
+        //   return (
+        //     <div>
+        //       <img src="robot.png" width="50" />
+        //       {message}
+        //     </div>
+        //   );
+        // }
+
+        return (
+          <div>
+            {sender === "robot" && <img src="robot.png" width="50" />}
+            {message}
+            {sender === "user" && <img src="user.png" width="50" />}
+          </div>
+        );
+      }
+
+      function ChatMessages({ chatMessages }) { 
+        return (
+          <>
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
+      function App() {
+
+        const [chatMessages, setChatMessages] = React.useState([
+          {
+            message: "Hello Chatbot!",
+            sender: "user",
+            id: "1",
+          },
+          {
+            message: "Hey, How can I help you?",
+            sender: "robot",
+            id: "2",
+          },
+          {
+            message: "Can you give me today's date?",
+            sender: "user",
+            id: "3",
+          },
+          {
+            message: "Sure, today is 16th of Jan 2026",
+            sender: "robot",
+            id: "4",
+          },
+        ]);
+
+        // const [chatMessages, setChatMessages] = array; // array destructuring just like objects
+
+        // const chatMessages = array[0] // first value is the current data
+        // const setChatMessages = array[1] // second value is a function to update the current value   
+
+        return (
+          <>
+            <ChatInput 
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+            />
+            <ChatMessages 
+              chatMessages={chatMessages}
+            />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
