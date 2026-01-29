@@ -27,6 +27,14 @@
         font-size: 15px;
       }
 
+      .chat-input {
+        padding: 12px 15px;
+        border-radius: 10px;
+        border-width: 1px;
+        font-size: 15px;
+      }
+
+
     </style>
   </head>
   <body>
@@ -114,6 +122,7 @@
               value={inputText}
               onKeyDown={sendOnEnter}
               disabled={isLoading}
+              className="chat-input"
             />
             <button
               className="send-button"
