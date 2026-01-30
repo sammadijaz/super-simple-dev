@@ -72,7 +72,10 @@
 
         React.useEffect(() => {
           setInterval(() => {
-            setTime(() => dayjs().format("HH:mm:ss"))
+            setTime(() => {
+              console.log("run code")
+              return dayjs().format("HH:mm:ss")
+            })
           }, 1000)
         })
 
