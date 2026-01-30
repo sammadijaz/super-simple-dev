@@ -18,6 +18,11 @@
         border-radius: 10px;
         margin-top: 10px;
         border-width: 1px;
+        
+        flex-grow: 1;
+        max-width: 300px;
+
+
       }
       
       .form-button {
@@ -28,6 +33,7 @@
         border: none;
         background-color: rgb(0, 123, 255);
         color: #fff;
+        cursor: pointer;
       }
 
       .form-input-hide {
@@ -35,6 +41,15 @@
         margin-left: 10px;
       }
 
+      .form-input-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .app-container {
+        margin-left: auto;
+        margin-right: auto;
+      }
     </style>
   </head>
   <body>
@@ -69,13 +84,13 @@
         const [showPassword, setShowPassword] = React.useState(true);
 
         return (
-          <>
+          <div className="app-container">
             <h1>Hello, Welcome to my website</h1>
             <FormInput type="text" placeholder="Email"/>
             <FormInput type={showPassword === true ? "text" : "password"} placeholder="Password" button={true} showPassword={showPassword} setShowPassword={setShowPassword}/>
             <FormButton text="Login"/>
             <FormButton text="Signup"/>
-          </>
+          </div>
         );
       }
 
