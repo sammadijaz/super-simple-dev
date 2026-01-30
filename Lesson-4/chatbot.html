@@ -86,6 +86,10 @@
         scrollbar-width: none;
       }
 
+      .chat-messages-loading-spinner {
+        width: 50px;
+      }
+
     </style>
   </head>
   <body>
@@ -132,7 +136,7 @@
               id: crypto.randomUUID()
             },
             {
-              message: <img src='../public/loading-spinner.gif' width='50' />,
+              message: <img src='../public/loading-spinner.gif' className="chat-messages-loading-spinner" />,
               sender: "robot",
               id: crypto.randomUUID()
             },
