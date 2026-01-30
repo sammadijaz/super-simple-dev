@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #141414;
+        color: #f5f5f5;
+      }
+
+      .app-button {
+        padding: 15px 30px;
+        font-size: 25px;
+        border-radius: 10px;
+        color: #fff;
+        background-color: rgb(25, 135, 84);
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function App() {
+        return (
+          <>
+            <button className="app-button">On</button>
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      const root = ReactDOM.createRoot(container);
+      const render = root.render(<App />);
+    </script>
+  </body>
+</html>
