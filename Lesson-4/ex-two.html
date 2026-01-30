@@ -50,6 +50,10 @@
         margin-left: auto;
         margin-right: auto;
       }
+
+      .clock-container {
+        margin-top: 30px;
+      }
     </style>
   </head>
   <body>
@@ -62,7 +66,22 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      function Clock () {
 
+        const [time, setTime] = React.useState(dayjs().format('HH:mm:ss'))
+
+        React.useEffect(() => {
+          setInterval(() => {
+            setTime(() => dayjs().format("HH:mm:ss"))
+          }, 1000)
+        })
+
+        return (
+          <div className="clock-container">
+            Current Time: {time}
+          </div>
+        );
+      }
 
       function FormButton({ text }) {
         return (
@@ -90,6 +109,7 @@
             <FormInput type={showPassword === true ? "text" : "password"} placeholder="Password" button={true} showPassword={showPassword} setShowPassword={setShowPassword}/>
             <FormButton text="Login"/>
             <FormButton text="Signup"/>
+            <Clock />
           </div>
         );
       }
