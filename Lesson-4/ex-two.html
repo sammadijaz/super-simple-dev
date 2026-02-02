@@ -18,13 +18,11 @@
         border-radius: 10px;
         margin-top: 10px;
         border-width: 1px;
-        
+
         flex-grow: 1;
         max-width: 300px;
-
-
       }
-      
+
       .form-button {
         padding: 10px 15px;
         border-radius: 7px;
@@ -66,38 +64,92 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function Clock () {
-
-        const [time, setTime] = React.useState(dayjs().format('HH:mm:ss'))
+      function Clock() {
+        const [time, setTime] = React.useState(dayjs().format("HH:mm:ss"));
 
         React.useEffect(() => {
           setInterval(() => {
             setTime(() => {
-              console.log("run code")
-              return dayjs().format("HH:mm:ss")
-            })
-          }, 1000)
-        }, [])
+              console.log("run code");
+              return dayjs().format("HH:mm:ss");
+            });
+          }, 1000);
+        }, []);
+
+        const [count, setCount] = React.useState(0);
+
+        const autoClickButtonRef = React.useRef(null);
+
+        const resetButtonRef = React.useRef(null);
+
+        function stopAutoClick() {
+          window.location.reload()
+        }
 
         return (
           <div className="clock-container">
             Current Time: {time}
+            <br />
+            <br />
+            <div>
+              <button ref={autoClickButtonRef} onClick={() => setCount((curr) => (curr += 1))}>
+                {count === 1
+                  ? `Clicked ${count} time`
+                  : `Clicked ${count} times`}
+              </button>
+              <button
+                onClick={() => {
+                  setCount((curr) => (curr = 0));
+                  clearInterval(resetButtonRef.current)
+                  resetButtonRef.current = null 
+                }}
+              >
+                Reset
+              </button>
+              <button ref={resetButtonRef} onClick={() => {  
+                const clickElem = autoClickButtonRef.current;
+                console.log(clickElem)
+                setInterval(() => {
+                  clickElem.click()
+                }, 1000)
+              }}>
+                AutoClick
+              </button>
+              <button 
+                className="stop-autoclick-button"
+                onClick={stopAutoClick}
+              >
+                Stop autoclick  
+              </button>
+            </div>
           </div>
         );
       }
 
       function FormButton({ text }) {
-        return (
-          <button className="form-button">{text}</button>
-        );
+        return <button className="form-button">{text}</button>;
       }
 
-      function FormInput({ type, placeholder, button, showPassword, setShowPassword }) {
-
+      function FormInput({
+        type,
+        placeholder,
+        button,
+        showPassword,
+        setShowPassword,
+      }) {
         return (
           <div className="form-input-container">
-            <input type={type} placeholder={placeholder}/>
-            {button === true ? <button className="form-input-hide" onClick={() => setShowPassword(!showPassword)}>Hide</button> : ""}
+            <input type={type} placeholder={placeholder} />
+            {button === true ? (
+              <button
+                className="form-input-hide"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                Hide
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         );
       }
@@ -108,10 +160,16 @@
         return (
           <div className="app-container">
             <h1>Hello, Welcome to my website</h1>
-            <FormInput type="text" placeholder="Email"/>
-            <FormInput type={showPassword === true ? "text" : "password"} placeholder="Password" button={true} showPassword={showPassword} setShowPassword={setShowPassword}/>
-            <FormButton text="Login"/>
-            <FormButton text="Signup"/>
+            <FormInput type="text" placeholder="Email" />
+            <FormInput
+              type={showPassword === true ? "text" : "password"}
+              placeholder="Password"
+              button={true}
+              showPassword={showPassword}
+              setShowPassword={setShowPassword}
+            />
+            <FormButton text="Login" />
+            <FormButton text="Signup" />
             <Clock />
           </div>
         );
